@@ -23,9 +23,10 @@ public class AStarGraph {
         ArrayList<Vertex> CurrentNeighbors;
         Vertex Neighbor;
 
-        //Initialize h with chosen heuristic
-
-        //Use either Manhattan or Euclidean as heuristic function
+        /*
+        Initialize h with chosen heuristic
+        Use either Manhattan or Euclidean as heuristic function
+         */
 
        manhattanHeuristic(destination);
        // euclideanHeuristic(destination);
@@ -33,7 +34,6 @@ public class AStarGraph {
 
         start.setg(0.0);
         start.calculatef();
-        //Start algorithm
         System.out.println("Start Algorithm");
         /*
         Implement the A* algorithm
@@ -47,7 +47,9 @@ public class AStarGraph {
             Closedlist.add(Current);
             for (int i=0; i<Current.getNeighbours().size(); i++) {
                 Double tempGOfV = Current.getg() + Current.getNeighbourDistance().get(i);
-                // tempV = neighbours to current
+                /*
+                tempV = neighbours to current
+                 */
                 Vertex tempV = Current.getNeighbours().get(i);
                 if (tempGOfV < tempV.getg()) {
                     tempV.setPrev(Current);
@@ -67,14 +69,20 @@ public class AStarGraph {
     public void manhattanHeuristic(Vertex destination){
         for (int i=0; i<vertices.size();i++){
             vertices.get(i).seth(Manhattan(vertices.get(i),destination));
-            //System.out.println(vertices.get(i).getid() + ".h: " + vertices.get(i).geth()); //Print this, to see the different h value, when using the different heuristic functions.
+            /*
+            Print this, to see the different h value, when using the different heuristic functions.
+             */
+            //System.out.println(vertices.get(i).getid() + ".h: " + vertices.get(i).geth());
         }
     }
 
     public void euclideanHeuristic(Vertex destination){
         for (int i=0; i<vertices.size();i++){
             vertices.get(i).seth(Euclidean(vertices.get(i),destination));
-            //System.out.println(vertices.get(i).getid() + ".h: " + vertices.get(i).geth()); //Print this, to see the different h value, when using the different heuristic functions.
+            /*
+            Print this, to see the different h value, when using the different heuristic functions.
+             */
+            //System.out.println(vertices.get(i).getid() + ".h: " + vertices.get(i).geth());
         }
     }
 
@@ -103,7 +111,16 @@ class Vertex implements Comparable<Vertex>{
     private Integer y; //coordinates of our vertex - used to calculate h
 
     private Vertex prev =null;
-    // constructor for vertex.
+
+    /*
+    Default constructor, for setting start and end vertex
+     */
+    public Vertex(){
+    }
+
+    /*
+    constructor for vertex.
+     */
     public Vertex(String id, int x_cor,int y_cor){
         this.id = id;
         this.x = x_cor;

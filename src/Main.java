@@ -5,9 +5,6 @@ public class Main {
     public static void main(String[] args) {
         AStarGraph MyMaze = new AStarGraph();
 
-        //Make the graph provided to you in the portfolio 3
-        //Constructed all the vertices in the graph (form A-J)
-
         Vertex A = new Vertex("A", 0,4);
         Vertex B = new Vertex("B", 1, 7);
         Vertex C = new Vertex("C", 4, 0);
@@ -19,7 +16,9 @@ public class Main {
         Vertex I = new Vertex("I", 9, 2);
         Vertex J = new Vertex("J", 11, 5);
 
-        // add vertices to MyMaze, using addvertex()
+        /*
+        add vertices to MyMaze, using addvertex()
+         */
         MyMaze.addvertex(A);
         MyMaze.addvertex(B);
         MyMaze.addvertex(C);
@@ -31,7 +30,9 @@ public class Main {
         MyMaze.addvertex(I);
         MyMaze.addvertex(J);
 
-        // add distance to vertices
+        /*
+        add distance to vertices
+         */
         MyMaze.newconnection(A,B,3.41);
         MyMaze.newconnection(A,C,6.82);
 
@@ -48,18 +49,30 @@ public class Main {
         MyMaze.newconnection(F,H,3.82);
 
         MyMaze.newconnection(G,H,5.41);
-       MyMaze.newconnection(G,I,2.82);
+        MyMaze.newconnection(G,I,2.82);
 
         MyMaze.newconnection(H,J,4.41);
 
-       MyMaze.newconnection(I,J,3.82);
+        MyMaze.newconnection(I,J,3.82);
 
-        if(MyMaze.A_Star(A,J))
+        /*
+        Setting end and start vertex
+         */
+        Vertex endVertex = new Vertex();
+        endVertex = J;
+
+        Vertex startVertex = new Vertex();
+        startVertex = A;
+
+
+        if(MyMaze.A_Star(startVertex,endVertex))
         {
             System.out.println("Found a path");
-            Vertex pvertex = J;
+            Vertex pvertex = endVertex;
 
-            // to print path
+            /*
+            to print path
+             */
             Stack<Vertex> Path = new Stack<>();
             int limit=0;
             while (pvertex!=null)
